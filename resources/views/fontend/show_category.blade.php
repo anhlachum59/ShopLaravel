@@ -5,6 +5,7 @@
 						<h2 class="title text-center">Danh mục {{$cate_name->category_name}}</h2>
 						@endforeach
 						@foreach($category_by_id as $key =>$product)
+						<a href="{{URL::to('chi-tiet-san-pham/'.$product->product_id)}}">
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
@@ -14,14 +15,7 @@
 											<p>{{$product->product_name}}</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>{{number_format($product->product_price)}} VNĐ</h2>
-												<p>{{$product->product_name}}</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-											</div>
-										</div>
-										<img src="{{('../public/fontend/images/new.png')}}" class="new" alt="" />
+										
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
@@ -31,6 +25,7 @@
 								</div>
 							</div>
 						</div>	
+						</a>
 						@endforeach
                     </div><!--features_items-->
                     

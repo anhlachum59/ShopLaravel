@@ -130,4 +130,16 @@ class ProductController extends Controller
         Session::put('message','Xóa sản phẩm thành công');
         return Redirect::to('/all-product');
     }
+
+    //Kết thúc admin
+
+    public function details_product($product_id)
+    {
+        $cate_product=DB::table('tbl_category_product')->orderby('category_id','desc')->get();
+        $brand_product=DB::table('tbl_brand')->orderby('brand_id','desc')->get();
+
+        return view('fontend.show_details')
+        ->with('category',$cate_product)
+        ->with('brand',$brand_product);
+    }
 }

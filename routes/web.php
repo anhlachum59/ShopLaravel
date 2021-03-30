@@ -23,6 +23,9 @@ Route::get('/danh-muc-san-pham/{category_id}',[\App\Http\Controllers\CategoryPro
 //Thương hiệu sản phẩm trang chủ
 Route::get('/thuong-hieu-san-pham/{brand_id}',[\App\Http\Controllers\BrandProductController::class,'show_brand_home']);
 
+//Sản phẩm
+Route::get('/chi-tiet-san-pham/{product_id}',[\App\Http\Controllers\ProductController::class,'details_product']);
+
 //backend
 Route::group(['prefix' => 'admin'],function(){
     Route::get('/login',[\App\Http\Controllers\AdminController::class,'login']);
