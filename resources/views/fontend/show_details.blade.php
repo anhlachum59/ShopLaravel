@@ -62,43 +62,21 @@
                     <div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#details" data-toggle="tab">Chi tiết</a></li>
-								<li><a href="#companyprofile" data-toggle="tab">Hồ sơ công ty</a></li>
+								<li class="active"><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
+								<li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>
 								<li ><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="details" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
-											</div>
-										</div>
-									</div>
-								</div>
 								
+							<p>{!!$details->product_desc!!}</p>
 								
 							</div>
 							
 							<div class="tab-pane fade" id="companyprofile" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
-											</div>
-										</div>
-									</div>
-								</div>
 								
+							<p>{!!$details->product_content!!}</p>
 	
 							</div>
 							
@@ -146,24 +124,30 @@
 					</div><!--/category-tab-->
 					@endforeach
                     <div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">Sản phẩm gợi ý</h2>
+						<h2 class="title text-center">Sản phẩm liên quan</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<div class="item active">	
+								<div class="item active">
+									
+								@foreach($relate as $key=>$related)
+								<a href="{{URL::to('chi-tiet-san-pham/'.$related->product_id)}}">
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+													<img src="{{URL::to('public/uploads/product/'.$related->product_image)}}" height="200" width="100" alt="" />
+													<h2>{{number_format($related->product_price)}} VNĐ</h2>
+													<p>{{$related->product_name}}</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
+										
 											</div>
 										</div>
 									</div>
-									
+									</a>
+									@endforeach
+								
 								</div>
 								<div class="item">	
 									<div class="col-sm-4">
