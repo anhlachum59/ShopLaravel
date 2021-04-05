@@ -19,11 +19,7 @@ class CartController extends Controller
         $productId = $request->productid_hidden;
         $quantity = $request->qty;
 
-
         $product_info = DB::table('tbl_product')->where('product_id',$productId)->first();
-        
- 
-        //Cart::destroy();
         
         $data['id'] = $product_info->product_id; 
         $data['qty'] = $quantity; 

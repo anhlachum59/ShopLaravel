@@ -32,6 +32,14 @@ Route::get('/show-cart',[\App\Http\Controllers\CartController::class,'show_cart'
 Route::get('/delete-to-cart/{rowId}',[\App\Http\Controllers\CartController::class,'delete_to_cart']);
 Route::post('/update-cart-quantity',[\App\Http\Controllers\CartController::class,'update_cart_quantity']);
 
+//Thanh toán
+Route::get('/login-checkout',[\App\Http\Controllers\CheckoutController::class,'login_checkout']);
+Route::get('/checkout',[\App\Http\Controllers\CheckoutController::class,'checkout']);
+
+//Đăng ký
+Route::post('/add-customer',[\App\Http\Controllers\CheckoutController::class,'add_customer']);
+
+
 //-------------------------------------end fontend--------------------------------------------
 
 //backend
