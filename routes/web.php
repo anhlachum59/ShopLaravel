@@ -26,6 +26,22 @@ Route::get('/thuong-hieu-san-pham/{brand_id}',[\App\Http\Controllers\BrandProduc
 //Sản phẩm
 Route::get('/chi-tiet-san-pham/{product_id}',[\App\Http\Controllers\ProductController::class,'details_product']);
 
+//Giở hàng
+Route::post('/save-cart',[\App\Http\Controllers\CartController::class,'save_cart']);
+Route::get('/show-cart',[\App\Http\Controllers\CartController::class,'show_cart']);
+Route::get('/delete-to-cart/{rowId}',[\App\Http\Controllers\CartController::class,'delete_to_cart']);
+Route::post('/update-cart-quantity',[\App\Http\Controllers\CartController::class,'update_cart_quantity']);
+
+//Thanh toán
+Route::get('/login-checkout',[\App\Http\Controllers\CheckoutController::class,'login_checkout']);
+Route::get('/checkout',[\App\Http\Controllers\CheckoutController::class,'checkout']);
+
+//Đăng ký
+Route::post('/add-customer',[\App\Http\Controllers\CheckoutController::class,'add_customer']);
+
+
+//-------------------------------------end fontend--------------------------------------------
+
 //backend
 Route::group(['prefix' => 'admin'],function(){
     Route::get('/login',[\App\Http\Controllers\AdminController::class,'login']);

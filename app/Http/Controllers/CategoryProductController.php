@@ -39,14 +39,23 @@ class CategoryProductController extends Controller
     public function save_category_product(Request $request)
     {
         $this->AuthLogin();
-        $data = array();
-        $data['category_name'] = $request->category_product_name;
-        $data['category_desc'] = $request->category_product_desc;
-        $data['category_status'] = $request->category_product_status;
+        if($request->category_product_name=="")
+        {
+            Session::put('message','Tên danh mục không đc để trống');
+            return Redirect::to('/add-category-product');
+        }
+        else
+        {
+            $data = array();
+            $data['category_name'] = $request->category_product_name;
+            $data['category_desc'] = $request->category_product_desc;
+            $data['category_status'] = $request->category_product_status;
+            
+            DB::table('tbl_category_product')->insert($data);
+            Session::put('message','Thêm danh mục sản phẩm thành công');
+            return Redirect::to('/add-category-product');
+        }
         
-        DB::table('tbl_category_product')->insert($data);
-        Session::put('message','Thêm danh mục sản phẩm thành công');
-        return Redirect::to('/add-category-product');
     }
     public function unactive_category_product($category_product_id)
     {
