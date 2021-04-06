@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 //fontend 
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/trang-chu',[\App\Http\Controllers\HomeController::class,'index']);
+Route::post('/tim-kiem',[\App\Http\Controllers\HomeController::class,'search']);
 
 //Danh mục sản phẩm trang chủ
 Route::get('/danh-muc-san-pham/{category_id}',[\App\Http\Controllers\CategoryProductController::class,'show_category_home']);
