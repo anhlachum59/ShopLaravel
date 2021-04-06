@@ -6,9 +6,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
+				
 					<div class="login-form"><!--login form-->
 						<h2>Đăng nhập vào tài khoản</h2>
-						<form action="#">
+						<form action="{{URL::to('/login')}}" method="POST">
+						{{csrf_field()}}
 							<input type="text" name="email_account" placeholder="Tên tài khoản" />
 							<input type="password" name="password_account" placeholder="Mật khẩu" />
 							<span>
@@ -23,14 +25,71 @@
 					<h2 class="or">HOẶC</h2>
 				</div>
 				<div class="col-sm-4">
+				<?php 
+					$message = Session::get('message');
+					if($message)
+					{
+						echo '<span class="text-success">'.$message.'</span>';
+						Session::put('message'.null);
+					}
+				?>
+				<?php 
+					$message = Session::get('message6');
+					if($message)
+					{
+						echo '<span class="text-success">'.$message.'</span>';
+						Session::put('message6'.null);
+					}
+				?>
 					<div class="signup-form"><!--sign up form-->
 						<h2>Đăng ký</h2>
 						<form action="{{URL::to('/add-customer')}}" method="POST">
                         {{csrf_field()}}
 							<input type="text" name="customer_name" maxlength="50" placeholder="Họ và tên"/>
+							<?php 
+								$message1 = Session::get('message1');
+								if($message1)
+								{
+									echo '<span class="text-success">'.$message1.'</span>';
+									Session::put('message1'.null);
+								}
+							?>
 							<input type="email" name="customer_email" maxlength="50" placeholder="Địa chỉ Email"/>
+							<?php 
+								$message2 = Session::get('message2');
+								if($message2)
+								{
+									echo '<span class="text-success">'.$message2.'</span>';
+									Session::put('message2'.null);
+								}
+							?>
 							<input type="password" name="customer_password" placeholder="Mật khẩu"/>
+							<?php 
+								$message3 = Session::get('message3');
+								if($message3)
+								{
+									echo '<span class="text-success">'.$message3.'</span>';
+									Session::put('message3'.null);
+								}
+							?>
+							<input type="password" name="comfirm_password" placeholder="Xác nhận mật khẩu"/>
+							<?php 
+								$message5 = Session::get('message5');
+								if($message5)
+								{
+									echo '<span class="text-success">'.$message5.'</span>';
+									Session::put('message5'.null);
+								}
+							?>
                             <input type="text" name="customer_phone" placeholder="Số điện thoại"/>
+							<?php 
+								$message4 = Session::get('message4');
+								if($message4)
+								{
+									echo '<span class="text-success">'.$message4.'</span>';
+									Session::put('message4'.null);
+								}
+							?>
 							<button type="submit" class="btn btn-default">Đăng ký</button>
 						</form>
 					</div><!--/sign up form-->

@@ -23,7 +23,7 @@ class HomeController extends Controller
         // ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         // ->orderby('tbl_product.product_id','desc')->get();
         $all_product=DB::table('tbl_product')->where('product_status','0')
-        ->orderby('product_id','desc')->limit(4)->get();  
+        ->orderby('product_id','desc')->limit(6)->get();  
            
         return view('fontend.home')->with('category',$cate_product)
         ->with('brand',$brand_product)

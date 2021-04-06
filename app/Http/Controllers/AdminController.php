@@ -37,7 +37,7 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $admin_email = $request->input('admin_email');
-        $admin_password = ($request->input('admin_password'));
+        $admin_password = md5($request->input('admin_password'));
 
         $result = DB::table('admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
   
