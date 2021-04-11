@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
+
   position: relative;
   font-weight:400px;
 }
@@ -47,7 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-toggle {
   background-color: #000;
 }
-
+span.text-alert{
+  color: red;
+  font-size: 17px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
 a#scrollUp {
   bottom: 0px;
   right: 10px;
@@ -899,7 +905,7 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+ 
 }
 
 .single-products:hover .product-overlay {

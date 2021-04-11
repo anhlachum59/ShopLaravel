@@ -39,13 +39,7 @@ class BrandProductController extends Controller
     public function save_brand_product(Request $request)
     {
         $this->AuthLogin();
-        if($request->brand_product_name == "")
-        {
-            Session::put('message','Tên thương hiệu không đc để trống');
-            return Redirect::to('/add-brand-product');
-        }
-        else
-        {
+        
             $data = array();
             $data['brand_name'] = $request->brand_product_name;
             $data['brand_desc'] = $request->brand_product_desc;
@@ -53,8 +47,8 @@ class BrandProductController extends Controller
             
             DB::table('tbl_brand')->insert($data);
             Session::put('message','Thêm thương hiệu sản phẩm thành công');
-            return Redirect::to('/add-brand-product');
-        }
+            return Redirect::to('/all-brand-product');
+    
         
     }
     public function unactive_brand_product($brand_product_id)

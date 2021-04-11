@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Cart;
 
 
 class CheckoutController extends Controller
@@ -79,8 +80,64 @@ class CheckoutController extends Controller
     }
     public function payment()
     {
+        $cate_product=DB::table('tbl_category_product')->where('category_status','0')
+        ->orderby('category_id','desc')->get();
+        $brand_product=DB::table('tbl_brand')->where('brand_status','0')
+        ->orderby('brand_id','desc')->get();
 
+        return view('fontend.checkout.payment')->with('category',$cate_product)
+        ->with('brand',$brand_product);
     }
+
+    public function order(Request $request)
+    {
+        //insert payment method
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_status'] = 'Đang chờ xử lý';
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+        
+        //insert order
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Cart::total();
+        $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+   
+        //insert order details
+        $content = Cart::content();
+        foreach($content as $v_content)
+        {
+            $order_details_data = array();
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $v_content->id;
+            $order_details_data['product_name'] = $v_content->name;
+            $order_details_data['product_price'] = $v_content->price;
+            $order_details_data['product_sales_quantity'] = $v_content->qty;
+            DB::table('tbl_order_details')->insert($order_details_data);
+        }
+        if($data['payment_method']==1)
+        {
+            echo 'ATM';
+        }
+        elseif($data['payment_method']==2)
+        {
+            Cart::destroy();
+            $cate_product=DB::table('tbl_category_product')->where('category_status','0')
+            ->orderby('category_id','desc')->get();
+            $brand_product=DB::table('tbl_brand')->where('brand_status','0')
+            ->orderby('brand_id','desc')->get();
+            return view('fontend.checkout.handcash')->with('category',$cate_product)
+            ->with('brand',$brand_product);
+        }
+
+      
+
+        //return Redirect('/payment');
+    }
+
     public function logout_checkout()
     {
         Session::flush();
@@ -90,10 +147,15 @@ class CheckoutController extends Controller
     {
         $email = $request->email_account;
         $password = md5($request->password_account);
+        if($request->email_account==""||$request->password_account=="")
+        {
+            Session::put('message7','Bạn cần phải nhập tài khoản và mật khẩu');
+            return Redirect('/login-checkout');
+        }
         $result = DB::table('tbl_customer')->where('customer_email',$email)->where('customer_password',$password)->first();
 
         Session::put('customer_id',$result->customer_id);
         Session::put('customer_name',$result->customer_name); 
-        return Redirect('/');
+        return Redirect('/checkout');
     }
 }

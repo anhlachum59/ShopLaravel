@@ -37,6 +37,8 @@ Route::post('/update-cart-quantity',[\App\Http\Controllers\CartController::class
 Route::get('/login-checkout',[\App\Http\Controllers\CheckoutController::class,'login_checkout']);
 Route::get('/checkout',[\App\Http\Controllers\CheckoutController::class,'checkout']);
 Route::post('/save-checkout-customer',[\App\Http\Controllers\CheckoutController::class,'save_checkout_customer']);
+Route::get('/payment',[\App\Http\Controllers\CheckoutController::class,'payment']);
+Route::post('/order',[\App\Http\Controllers\CheckoutController::class,'order']);
 
 //Đăng ký
 Route::post('/add-customer',[\App\Http\Controllers\CheckoutController::class,'add_customer']);
@@ -90,3 +92,7 @@ Route::get('/active-product/{product_id}',[\App\Http\Controllers\ProductControll
 
 Route::post('/save-product',[\App\Http\Controllers\ProductController::class,'save_product']);
 Route::post('/update-product/{product_id}',[\App\Http\Controllers\ProductController::class,'update_product']);
+
+//Order
+Route::get('/manage-order',[\App\Http\Controllers\OrderController::class,'manage_order']);
+Route::get('/view-order/{order_id}',[\App\Http\Controllers\OrderController::class,'view_order']);

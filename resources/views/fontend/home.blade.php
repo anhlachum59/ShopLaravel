@@ -11,7 +11,7 @@
 											<img src="{{URL::to('public/uploads/product/'.$product->product_image)}}" height="200" width="100" alt="" />
 											<h2>{{number_format($product->product_price)}} VNĐ</h2>
 											<p>{{$product->product_name}}</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+											<a href="/shop/public/save-cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									
 								</div>
@@ -53,7 +53,7 @@
 						</div>
 					</div><!--/category-tab-->
 
-                    <div class="recommended_items"><!--recommended_items-->
+                    <!-- <div class="recommended_items">
 						<h2 class="title text-center">recommended items</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -148,5 +148,5 @@
 								<i class="fa fa-angle-right"></i>
 							  </a>			
 						</div>
-					</div><!--/recommended_items-->
+					</div>/recommended_items -->
 @endsection
