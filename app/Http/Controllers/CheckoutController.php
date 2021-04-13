@@ -16,12 +16,14 @@ class CheckoutController extends Controller
 {
     public function login_checkout()
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
         ->orderby('brand_id','desc')->get();
         return view('fontend.checkout.login_checkout')->with('category',$cate_product)
-        ->with('brand',$brand_product);
+        ->with('brand',$brand_product)
+        ->with('banner',$banner);
     }
     public function add_customer(Request $request)
     {
@@ -51,18 +53,20 @@ class CheckoutController extends Controller
             $customer_id = DB::table('tbl_customer')->insertGetId($data);
             Session::put('customer_id',$customer_id);
             Session::put('customer_name',$request->customer_name); 
-            return Redirect('/checkout');
+            return Redirect('/');
         }
     }
     
     public function checkout()
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
         ->orderby('brand_id','desc')->get();
         return view('fontend.checkout.show_checkout')->with('category',$cate_product)
-        ->with('brand',$brand_product);
+        ->with('brand',$brand_product)
+        ->with('banner',$banner);
     }
     public function save_checkout_customer(Request $request)
     {
@@ -80,13 +84,15 @@ class CheckoutController extends Controller
     }
     public function payment()
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
         ->orderby('brand_id','desc')->get();
 
         return view('fontend.checkout.payment')->with('category',$cate_product)
-        ->with('brand',$brand_product);
+        ->with('brand',$brand_product)
+        ->with('banner',$banner);
     }
 
     public function order(Request $request)
@@ -125,12 +131,14 @@ class CheckoutController extends Controller
         elseif($data['payment_method']==2)
         {
             Cart::destroy();
+            $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
             $cate_product=DB::table('tbl_category_product')->where('category_status','0')
             ->orderby('category_id','desc')->get();
             $brand_product=DB::table('tbl_brand')->where('brand_status','0')
             ->orderby('brand_id','desc')->get();
             return view('fontend.checkout.handcash')->with('category',$cate_product)
-            ->with('brand',$brand_product);
+            ->with('brand',$brand_product)
+            ->with('banner',$banner);
         }
 
       
@@ -156,6 +164,6 @@ class CheckoutController extends Controller
 
         Session::put('customer_id',$result->customer_id);
         Session::put('customer_name',$result->customer_name); 
-        return Redirect('/checkout');
+        return Redirect('/');
     }
 }

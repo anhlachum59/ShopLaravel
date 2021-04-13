@@ -134,6 +134,7 @@ class ProductController extends Controller
 
     public function details_product($product_id)
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->orderby('brand_id','desc')->get();
         
@@ -151,12 +152,13 @@ class ProductController extends Controller
         $related_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
+        ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->limit(3)->get();
 
         return view('fontend.show_details')
         ->with('category',$cate_product)
         ->with('brand',$brand_product)
         ->with('details_product',$details_product)
-        ->with('relate',$related_product);
+        ->with('relate',$related_product)
+        ->with('banner',$banner);
     }
 }

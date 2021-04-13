@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+	<!--SEO -->
+    
+	<link rel="icon" type="image/x-icon" href=""/>
+	<!--SEO -->
+    <title>MEOK shoes shop</title>
     <link href="{{asset('../public/fontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('../public/fontend/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('../public/fontend/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -13,6 +15,7 @@
     <link href="{{asset('../public/fontend/css/animate.css')}}" rel="stylesheet">
 	<link href="{{asset('../public/fontend/css/main.css')}}" rel="stylesheet">
 	<link href="{{asset('../public/fontend/css/responsive.css')}}" rel="stylesheet">
+	
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -93,7 +96,29 @@
 									if($customer_id!=NULL)
 									{
 								?>
-								<li><a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i>Đăng Xuất</a></li>
+								<!-- user login dropdown start-->
+								<li class="dropdown">
+									<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+										
+										<span class="username">
+										<?php 
+											$name = Session::get('customer_name');
+											if($name)
+											{
+												echo 'Chào '.$name;
+												
+											}
+											?>
+										</span>
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu extended logout">
+										<li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin cá nhân</a></li>
+										<li><a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i>Đăng xuất</a></li>
+									</ul>
+								</li>
+								<!-- user login dropdown end -->
+								
 								<?php
 								}else
 								{
@@ -166,43 +191,20 @@
 						</ol>
 						
 						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{('../public/fontend/images/girl1.jpg')}}" class="girl img-responsive" alt="" />
-									<img src="{{('../public/fontend/images/pricing.png')}}"  class="pricing" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{('../public/fontend/images/girl2.jpg')}}" class="girl img-responsive" alt="" />
-									<img src="{{('../public/fontend/images/pricing.png')}}"  class="pricing" alt="" />
+							<?php
+								$i = 0;
+							?>
+							@foreach($banner as $key=>$ban)
+							<?php
+								$i++;
+							?>
+							<div class="item {{$i==1 ? 'active' : '' }}">
+								
+								<div class="col-sm-12">
+								<img src="{{URL::to('public/uploads/banner/'.$ban->banner_image)}}" height="400" width="1000">
 								</div>
 							</div>
-							
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{('../public/fontend/images/girl3.jpg')}}" class="girl img-responsive" alt="" />
-									<img src="{{('../public/fontend/images/pricing.png')}}" class="pricing" alt="" />
-								</div>
-							</div>
+							@endforeach
 							
 						</div>
 						
@@ -414,7 +416,34 @@
 	<script src="{{asset('../public/fontend/js/main.js')}}"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var cate_id = $('.tabs_product').data('id');
+		var _token = $('input[name="_token"').val();
+		$.ajax({
+			url: '{{url('/product-tabs')}}',
+				method: "POST",
+				data: {cate_id:cate_id,_token:_token},
+				success:function(data){
+					$('#tabs_product').html(data);
+				}
+		});
 
+		$('.tabs_product').click(function(){
+			var cate_id=$(this).data('id');
+			//alert(cate_id);
+			var _token=$('input[name="_token"]').val();
+			$.ajax({
+				url: '{{url('/product-tabs')}}',
+				method: "POST",
+				data: {cate_id:cate_id,_token:_token},
+				success:function(data){
+					$('#tabs_product').html(data);
+				}
+			});
+		});
+	});
+</script>
 <style>
             label.error {
                 color: red;

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/trang-chu',[\App\Http\Controllers\HomeController::class,'index']);
 Route::post('/tim-kiem',[\App\Http\Controllers\HomeController::class,'search']);
+Route::post('/product-tabs',[\App\Http\Controllers\HomeController::class,'product_tabs']);
 
 //Danh mục sản phẩm trang chủ
 Route::get('/danh-muc-san-pham/{category_id}',[\App\Http\Controllers\CategoryProductController::class,'show_category_home']);
@@ -96,3 +97,16 @@ Route::post('/update-product/{product_id}',[\App\Http\Controllers\ProductControl
 //Order
 Route::get('/manage-order',[\App\Http\Controllers\OrderController::class,'manage_order']);
 Route::get('/view-order/{order_id}',[\App\Http\Controllers\OrderController::class,'view_order']);
+
+//Banner
+Route::get('/add-banner',[\App\Http\Controllers\BannerController::class,'add_banner']);
+Route::get('/edit-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'edit_banner']);
+Route::get('/manage-banner',[\App\Http\Controllers\BannerController::class,'manage_banner']);
+
+Route::get('/unactive-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'unactive_banner']);
+Route::get('/active-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'active_banner']);
+
+Route::post('/save-banner',[\App\Http\Controllers\BannerController::class,'save_banner']);
+Route::post('/update-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'update_banner']);
+Route::get('/delete-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'delete_banner']);
+

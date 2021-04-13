@@ -133,6 +133,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         {{-- <li><a href="grids.html">Grids</a></li> --}}
                     </ul>
                 </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Banner</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-banner')}}">Thêm Banner</a></li>
+						<li><a href="{{URL::to('/manage-banner')}}">Quản lý Banner</a></li>
+                        {{-- <li><a href="grids.html">Grids</a></li> --}}
+                    </ul>
+                </li>
+				
         <!-- sidebar menu end-->
     </div>
 </aside>
@@ -167,12 +179,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <style>
-            label.error {
-                color: red;
-      
-            }
+    label.error {
+        color: red;
+    }
             
-        </style>
+</style>
 <script type="text/javascript">
 	CKEDITOR.replace('product_desc');
 	CKEDITOR.replace('product_content');
@@ -182,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	CKEDITOR.replace('edit_category_product_desc');
 	CKEDITOR.replace('brand_product_desc');
 	CKEDITOR.replace('edit_brand_product_desc');
-
+	CKEDITOR.replace('banner_desc');
 
 </script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->

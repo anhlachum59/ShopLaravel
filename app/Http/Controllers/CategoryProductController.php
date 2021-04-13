@@ -94,6 +94,8 @@ class CategoryProductController extends Controller
 
     public function show_category_home($category_id)
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
+
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
@@ -111,7 +113,8 @@ class CategoryProductController extends Controller
         return view('fontend.show_category')->with('category',$cate_product)
         ->with('brand',$brand_product)
         ->with('category_by_id',$category_by_id)
-        ->with('category_name',$category_name);
+        ->with('category_name',$category_name)
+        ->with('banner',$banner);
     }
     
 }

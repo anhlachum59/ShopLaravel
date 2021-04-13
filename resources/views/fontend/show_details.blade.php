@@ -156,18 +156,23 @@
 								
 								</div>
 								<div class="item">	
+								@foreach($relate as $key=>$related)
+								<a href="{{URL::to('chi-tiet-san-pham/'.$related->product_id)}}">
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+													<img src="{{URL::to('public/uploads/product/'.$related->product_image)}}" height="200" width="100" alt="" />
+													<h2>{{number_format($related->product_price)}} VNĐ</h2>
+													<p>{{$related->product_name}}</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
+										
 											</div>
 										</div>
 									</div>
+									</a>
+									@endforeach
 									
 								</div>
 							</div>
