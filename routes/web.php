@@ -48,6 +48,10 @@ Route::post('/add-customer',[\App\Http\Controllers\CheckoutController::class,'ad
 Route::get('/logout-checkout',[\App\Http\Controllers\CheckoutController::class,'logout_checkout']);
 Route::post('/login',[\App\Http\Controllers\CheckoutController::class,'login']);
 
+//Thông tin cá nhân
+Route::get('/customer-info',[\App\Http\Controllers\CustomerController::class,'customer_info']);
+Route::post('/update-customer',[\App\Http\Controllers\CustomerController::class,'update_customer']);
+
 //-------------------------------------end fontend--------------------------------------------
 
 //backend

@@ -113,7 +113,7 @@
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu extended logout">
-										<li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin cá nhân</a></li>
+										<li><a href="{{URL::to('/customer-info')}}"><i class=" fa fa-suitcase"></i>Thông tin cá nhân</a></li>
 										<li><a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i>Đăng xuất</a></li>
 									</ul>
 								</li>
