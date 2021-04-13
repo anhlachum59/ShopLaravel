@@ -122,7 +122,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         {{-- <li><a href="grids.html">Grids</a></li> --}}
                     </ul>
                 </li>
-                
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Đơn hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
+
+                        {{-- <li><a href="grids.html">Grids</a></li> --}}
+                    </ul>
+                </li>
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Banner</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-banner')}}">Thêm Banner</a></li>
+						<li><a href="{{URL::to('/manage-banner')}}">Quản lý Banner</a></li>
+                        {{-- <li><a href="grids.html">Grids</a></li> --}}
+                    </ul>
+                </li>
+				
         <!-- sidebar menu end-->
     </div>
 </aside>
@@ -147,8 +169,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('../public/backend/js/scripts.js')}}"></script>
 <script src="{{asset('../public/backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('../public/backend/js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('../public/backend/ckeditor/ckeditor.js')}}"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+<script src="{{asset('../public/formValidation.min.js')}}"></script>
+<script type="text/javascript">
+	$.validate({
+
+	});
+</script>
+<style>
+    label.error {
+        color: red;
+    }
+            
+</style>
+<script type="text/javascript">
+	CKEDITOR.replace('product_desc');
+	CKEDITOR.replace('product_content');
+	CKEDITOR.replace('edit_product_desc');
+	CKEDITOR.replace('edit_product_content');
+	CKEDITOR.replace('category_product_desc');
+	CKEDITOR.replace('edit_category_product_desc');
+	CKEDITOR.replace('brand_product_desc');
+	CKEDITOR.replace('edit_brand_product_desc');
+	CKEDITOR.replace('banner_desc');
+
+</script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script src="{{asset('../public/backendjs/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('../public/backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->	
 <script>
 	$(document).ready(function() {

@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 //fontend 
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/trang-chu',[\App\Http\Controllers\HomeController::class,'index']);
+Route::post('/tim-kiem',[\App\Http\Controllers\HomeController::class,'search']);
+Route::post('/product-tabs',[\App\Http\Controllers\HomeController::class,'product_tabs']);
 
 //Danh mục sản phẩm trang chủ
 Route::get('/danh-muc-san-pham/{category_id}',[\App\Http\Controllers\CategoryProductController::class,'show_category_home']);
@@ -26,7 +28,7 @@ Route::get('/thuong-hieu-san-pham/{brand_id}',[\App\Http\Controllers\BrandProduc
 //Sản phẩm
 Route::get('/chi-tiet-san-pham/{product_id}',[\App\Http\Controllers\ProductController::class,'details_product']);
 
-//Giở hàng
+//Giỏ hàng
 Route::post('/save-cart',[\App\Http\Controllers\CartController::class,'save_cart']);
 Route::get('/show-cart',[\App\Http\Controllers\CartController::class,'show_cart']);
 Route::get('/delete-to-cart/{rowId}',[\App\Http\Controllers\CartController::class,'delete_to_cart']);
@@ -35,10 +37,20 @@ Route::post('/update-cart-quantity',[\App\Http\Controllers\CartController::class
 //Thanh toán
 Route::get('/login-checkout',[\App\Http\Controllers\CheckoutController::class,'login_checkout']);
 Route::get('/checkout',[\App\Http\Controllers\CheckoutController::class,'checkout']);
+Route::post('/save-checkout-customer',[\App\Http\Controllers\CheckoutController::class,'save_checkout_customer']);
+Route::get('/payment',[\App\Http\Controllers\CheckoutController::class,'payment']);
+Route::post('/order',[\App\Http\Controllers\CheckoutController::class,'order']);
 
 //Đăng ký
 Route::post('/add-customer',[\App\Http\Controllers\CheckoutController::class,'add_customer']);
 
+//Đăng nhập/xuất
+Route::get('/logout-checkout',[\App\Http\Controllers\CheckoutController::class,'logout_checkout']);
+Route::post('/login',[\App\Http\Controllers\CheckoutController::class,'login']);
+
+//Thông tin cá nhân
+Route::get('/customer-info',[\App\Http\Controllers\CustomerController::class,'customer_info']);
+Route::post('/update-customer',[\App\Http\Controllers\CustomerController::class,'update_customer']);
 
 //-------------------------------------end fontend--------------------------------------------
 
@@ -85,3 +97,20 @@ Route::get('/active-product/{product_id}',[\App\Http\Controllers\ProductControll
 
 Route::post('/save-product',[\App\Http\Controllers\ProductController::class,'save_product']);
 Route::post('/update-product/{product_id}',[\App\Http\Controllers\ProductController::class,'update_product']);
+
+//Order
+Route::get('/manage-order',[\App\Http\Controllers\OrderController::class,'manage_order']);
+Route::get('/view-order/{order_id}',[\App\Http\Controllers\OrderController::class,'view_order']);
+
+//Banner
+Route::get('/add-banner',[\App\Http\Controllers\BannerController::class,'add_banner']);
+Route::get('/edit-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'edit_banner']);
+Route::get('/manage-banner',[\App\Http\Controllers\BannerController::class,'manage_banner']);
+
+Route::get('/unactive-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'unactive_banner']);
+Route::get('/active-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'active_banner']);
+
+Route::post('/save-banner',[\App\Http\Controllers\BannerController::class,'save_banner']);
+Route::post('/update-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'update_banner']);
+Route::get('/delete-banner/{banner_id}',[\App\Http\Controllers\BannerController::class,'delete_banner']);
+

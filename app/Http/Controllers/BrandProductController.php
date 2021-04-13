@@ -39,14 +39,17 @@ class BrandProductController extends Controller
     public function save_brand_product(Request $request)
     {
         $this->AuthLogin();
-        $data = array();
-        $data['brand_name'] = $request->brand_product_name;
-        $data['brand_desc'] = $request->brand_product_desc;
-        $data['brand_status'] = $request->brand_product_status;
         
-        DB::table('tbl_brand')->insert($data);
-        Session::put('message','Thêm thương hiệu sản phẩm thành công');
-        return Redirect::to('/add-brand-product');
+            $data = array();
+            $data['brand_name'] = $request->brand_product_name;
+            $data['brand_desc'] = $request->brand_product_desc;
+            $data['brand_status'] = $request->brand_product_status;
+            
+            DB::table('tbl_brand')->insert($data);
+            Session::put('message','Thêm thương hiệu sản phẩm thành công');
+            return Redirect::to('/all-brand-product');
+    
+        
     }
     public function unactive_brand_product($brand_product_id)
     {
@@ -91,6 +94,7 @@ class BrandProductController extends Controller
     //Kết thúc admin
     public function show_brand_home($brand_id)
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
@@ -106,6 +110,7 @@ class BrandProductController extends Controller
         return view('fontend.show_brand')->with('category',$cate_product)
         ->with('brand',$brand_product)
         ->with('brand_by_id',$brand_by_id)
-        ->with('brand_name',$brand_name);
+        ->with('brand_name',$brand_name)
+        ->with('banner',$banner);
     }
 }

@@ -39,13 +39,7 @@ class CategoryProductController extends Controller
     public function save_category_product(Request $request)
     {
         $this->AuthLogin();
-        if($request->category_product_name=="")
-        {
-            Session::put('message','Tên danh mục không đc để trống');
-            return Redirect::to('/add-category-product');
-        }
-        else
-        {
+        
             $data = array();
             $data['category_name'] = $request->category_product_name;
             $data['category_desc'] = $request->category_product_desc;
@@ -53,8 +47,8 @@ class CategoryProductController extends Controller
             
             DB::table('tbl_category_product')->insert($data);
             Session::put('message','Thêm danh mục sản phẩm thành công');
-            return Redirect::to('/add-category-product');
-        }
+            return Redirect::to('/all-category-product');
+      
         
     }
     public function unactive_category_product($category_product_id)
@@ -100,6 +94,8 @@ class CategoryProductController extends Controller
 
     public function show_category_home($category_id)
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
+
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
@@ -117,7 +113,8 @@ class CategoryProductController extends Controller
         return view('fontend.show_category')->with('category',$cate_product)
         ->with('brand',$brand_product)
         ->with('category_by_id',$category_by_id)
-        ->with('category_name',$category_name);
+        ->with('category_name',$category_name)
+        ->with('banner',$banner);
     }
     
 }

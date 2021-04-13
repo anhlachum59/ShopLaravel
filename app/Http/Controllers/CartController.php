@@ -33,13 +33,15 @@ class CartController extends Controller
     }
     public function show_cart()
     {
+        $banner = DB::table('tbl_banner')->where('banner_status','0')->orderby('banner_id','desc')->get();
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')
         ->orderby('category_id','desc')->get();
         $brand_product=DB::table('tbl_brand')->where('brand_status','0')
         ->orderby('brand_id','desc')->get(); 
 
         return view('fontend.cart.show_cart')->with('category',$cate_product)
-        ->with('brand',$brand_product); 
+        ->with('brand',$brand_product)
+        ->with('banner',$banner); 
     }
     public function delete_to_cart($rowId)
     {

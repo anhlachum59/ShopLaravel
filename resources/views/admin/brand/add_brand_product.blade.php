@@ -17,15 +17,15 @@
                         <div class="panel-body">
                         
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-brand-product')}}" method="post">
+                                <form role="form" id="themthuonghieu" action="{{URL::to('/save-brand-product')}}" method="post">
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu</label>
-                                    <input type="text" name="brand_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên thương hiệu">
+                                    <input type="text" name="brand_product_name" class="form-control" id="brand_product_name" placeholder="Tên thương hiệu">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả thương hiệu</label>
-                                    <textarea style="resize: none" rows="8" class="form-control" name="brand_product_desc" id="exampleInputPassword1" placeholder="Mô tả thương hiệu"></textarea>
+                                    <textarea style="resize: none" rows="8" class="form-control" name="brand_product_desc" id="brand_product_desc" placeholder="Mô tả thương hiệu"></textarea>
                                 </div>
                                 <div class="form-group">
                                 <select name="brand_product_status" class="form-control input-sm m-bot15">
@@ -42,4 +42,27 @@
                     </section>
 
             </div>
+            <script>
+                    $().ready(function() {
+                    $("#themthuonghieu").validate({
+                    onfocusout: false,
+                    onkeyup: false,
+                    onclick: false,
+                    
+                    rules: {
+                        "brand_product_name": {
+                            required: true,
+                        },
+                      
+                    },
+                    messages:{
+                        "brand_product_name": {
+                            required: "Bạn chưa nhập tên thương hiệu"     
+                        },
+                       
+                    }
+                
+                });
+            });
+            </script>
 @endsection
