@@ -30,17 +30,35 @@ class CustomerController extends Controller
     }
     public function update_customer(Request $request)
     {
-        $data = array();
-        $data['customer_name'] = $request->customer_name;
-        $data['customer_email'] = $request->customer_email;
-        $data['customer_password'] = md5($request->customer_password);
-        $data['customer_phone'] = $request->customer_phone;
-        $customer_id=Session::get('customer_id');
-
-        $update_customer = Db::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
-        $message = "Cập nhật thành công";
-        Session::put('message',$message);
-
-        return Redirect::to('/customer-info');
+        if($request->customer_password=="")
+        {
+            $data = array();
+            $data['customer_name'] = $request->customer_name;
+            $data['customer_email'] = $request->customer_email;
+            $data['customer_phone'] = $request->customer_phone;
+            $customer_id=Session::get('customer_id');
+    
+            $update_customer = Db::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
+            $message = "Cập nhật thành công";
+            Session::put('message',$message);
+    
+            return Redirect::to('/customer-info');
+        }
+        else
+        {
+            $data = array();
+            $data['customer_name'] = $request->customer_name;
+            $data['customer_email'] = $request->customer_email;
+            $data['customer_password'] = md5($request->customer_password);
+            $data['customer_phone'] = $request->customer_phone;
+            $customer_id=Session::get('customer_id');
+    
+            $update_customer = Db::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
+            $message = "Cập nhật thành công";
+            Session::put('message',$message);
+    
+            return Redirect::to('/customer-info');
+        }
+       
     }
 }
