@@ -155,15 +155,18 @@ class CheckoutController extends Controller
     {
         $email = $request->email_account;
         $password = md5($request->password_account);
-        if($request->email_account==""||$request->password_account=="")
+      
+        $result = DB::table('tbl_customer')->where('customer_email',$email)->where('customer_password',$password)->first();
+        if($result)
         {
-            Session::put('message7','Bạn cần phải nhập tài khoản và mật khẩu');
+            Session::put('customer_id',$result->customer_id);
+            Session::put('customer_name',$result->customer_name); 
+            return Redirect('/');
+        }
+        else
+        {
+            Session::put('message7','Tài khoản hoặc mật khẩu sai');
             return Redirect('/login-checkout');
         }
-        $result = DB::table('tbl_customer')->where('customer_email',$email)->where('customer_password',$password)->first();
-
-        Session::put('customer_id',$result->customer_id);
-        Session::put('customer_name',$result->customer_name); 
-        return Redirect('/');
     }
 }

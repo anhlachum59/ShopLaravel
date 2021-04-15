@@ -38,6 +38,7 @@
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +84 0981523017</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> tuanhkhoa0705@gmail.com</a></li>
+								<li><div id="google_translate_element" width="10px"></div> </li>
 							</ul>
 						</div>
 					</div>
@@ -59,13 +60,14 @@
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="logo pull-left">
 							<a href="{{URL::to('/')}}"><img src="{{asset('../public/fontend/images/logo_meoK.png')}}" width="140px" height="60px" alt="" /></a>
 						</div>
 						
 					</div>
-					<div class="col-sm-8">
+					
+					<div class="col-sm-9">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
@@ -153,15 +155,18 @@
 								<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										 
+                                        <li><a href="#">Giày nam</a></li>
+										<li><a href="#">Giày nữ</a></li>
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-
+								<ul role="menu" class="sub-menu">
+                                        <li><a href="#">Tin mới</a></li>
+										<li><a href="#">Khuyến mãi</a></li>
+                                    </ul>
                                 </li> 
 								<li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li>
-								<li><a href="contact-us.html">Liên hệ</a></li>
+								<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -274,79 +279,10 @@
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>MEO</span>K</h2>
-							<p>Luôn mang đến cho các bạn những sản phẩm tốt nhất</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{asset('../public/fontend/images/iframe1.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{asset('../public/fontend/images/iframe2.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{asset('../public/fontend/images/iframe3.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{asset('../public/fontend/images/iframe4.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="{{asset('../public/fontend/images/map.png')}}" alt="" />
-							<p></p>
-						</div>
-					</div>
+					
+					<div class="col-sm-12">
+					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=10gOwM1tHnLCPtNnlP5_WJtpS8uQLOa16" width="1190" height="270"></iframe>
+		
 				</div>
 			</div>
 		</div>
@@ -404,7 +340,6 @@
 		</div>
 		
 		
-		
 	</footer><!--/Footer-->
 	
 
@@ -414,6 +349,7 @@
 	<script src="{{asset('../public/fontend/js/price-range.js')}}"></script>
 	<script src="{{asset('../public/fontend/js/jquery.prettyPhoto.js')}}"></script>
 	<script src="{{asset('../public/fontend/js/main.js')}}"></script>
+	<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -444,13 +380,16 @@
 		});
 	});
 </script>
+<script type="text/javascript">
+		function googleTranslateElementInit() {
+		new google.translate.TranslateElement({pageLanguage: 'vi'}, 'google_translate_element');
+	}
+</script>
 <style>
-            label.error {
-                color: red;
-      
-            }
-            
-        </style>
+    label.error {
+        color: red;
+    }  
+</style>
 </body>
 
 </html>

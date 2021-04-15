@@ -18,8 +18,8 @@
 						<h2>Đăng nhập vào tài khoản</h2>
 						<form role="form" id="dangnhap" action="{{URL::to('/login')}}" method="POST">
 						{{csrf_field()}}
-							<input type="text" id="email_account" name="email_account"placeholder="Tên tài khoản" />
-							<input type="password" id="password_account"  name="password_account" placeholder="Mật khẩu" />
+							<input type="text" id="email_account" required="required" name="email_account"placeholder="Tên tài khoản" />
+							<input type="password" id="password_account" required="required" name="password_account" placeholder="Mật khẩu" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Ghi nhớ đăng nhập
@@ -52,7 +52,7 @@
 						<h2>Đăng ký</h2>
 						<form id="dangky" action="{{URL::to('/add-customer')}}" method="POST">
                         {{csrf_field()}}
-							<input type="text" name="customer_name" id="customer_name" maxlength="50" placeholder="Họ và tên"/>
+							<input type="text" name="customer_name" required="required" id="customer_name" maxlength="50" placeholder="Họ và tên"/>
 							<?php 
 								$message1 = Session::get('message1');
 								if($message1)
@@ -61,7 +61,7 @@
 									Session::put('message1'.null);
 								}
 							?>
-							<input type="email" name="customer_email" id="customer_email" maxlength="50" placeholder="Địa chỉ Email"/>
+							<input type="email" name="customer_email" required="required" id="customer_email" maxlength="50" placeholder="Địa chỉ Email"/>
 							<?php 
 								$message2 = Session::get('message2');
 								if($message2)
@@ -70,7 +70,7 @@
 									Session::put('message2'.null);
 								}
 							?>
-							<input type="password" name="customer_password" id="customer_password" placeholder="Mật khẩu"/>
+							<input type="password" name="customer_password" required="required" id="customer_password" placeholder="Mật khẩu"/>
 							<?php 
 								$message3 = Session::get('message3');
 								if($message3)
@@ -79,7 +79,7 @@
 									Session::put('message3'.null);
 								}
 							?>
-							<input type="password" name="comfirm_password" id="comfirm_password" placeholder="Xác nhận mật khẩu"/>
+							<input type="password" name="comfirm_password" required="required" id="comfirm_password" placeholder="Xác nhận mật khẩu"/>
 							<?php 
 								$message5 = Session::get('message5');
 								if($message5)
@@ -88,7 +88,7 @@
 									Session::put('message5'.null);
 								}
 							?>
-                            <input type="text" name="customer_phone" id="customer_phone" placeholder="Số điện thoại"/>
+                            <input type="text" name="customer_phone" required="required" id="customer_phone" placeholder="Số điện thoại"/>
 							<?php 
 								$message4 = Session::get('message4');
 								if($message4)

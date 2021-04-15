@@ -7,6 +7,7 @@
 						echo '<h2 style="text-align:center" class="text-success">'.$message.'</h2>';
 						Session::put('message'.null);
 					}
+                    
 				?>
 <div class="row">  	
     
@@ -27,8 +28,8 @@
 				                <input type="email" name="customer_email" class="form-control" required="required" value="{{$customer->customer_email}}">
 				            </div>
 				            <div class="form-group col-md-6">
-                                <h3>Mật khẩu:</h3>
-				                <input type="password" name="customer_password" class="form-control" required="required" value="{{$customer->customer_password}}">
+                                <h3>Thay đổi mật khẩu:</h3>
+				                <input type="password" name="customer_password" class="form-control"  value="">
 				            </div>
 				            <div class="form-group col-md-6">
                                 <h3>Số điện thoại:</h3>
